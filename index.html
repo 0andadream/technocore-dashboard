@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flop Farmer · Technocore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0f14;
+    --bg2: #121821;
+    --panel: #151c27;
+    --panel2: #1a2330;
+    --border: #243041;
+    --border2: #2e3d52;
+    --text: #e7eef8;
+    --muted: #8b9bb0;
+    --dim: #5c6b80;
+    --accent: #5eead4;
+    --accent2: #38bdf8;
+    --live: #34d399;
+    --dry: #fbbf24;
+    --dead: #f87171;
+    --done: #34d399;
+    --pending: #64748b;
+    --next: #38bdf8;
+    --warn: #fbbf24;
+    --card-shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 24px rgba(0,0,0,0.35);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font-family: "IBM Plex Sans", system-ui, sans-serif; min-height: 100%; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,0.08), transparent 50%),
+      radial-gradient(900px 500px at 90% 0%, rgba(94,234,212,0.06), transparent 45%),
+      var(--bg);
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 64px; }
+  header {
+    display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+    gap: 16px; margin-bottom: 22px;
+  }
+  .brand h1 {
+    margin: 0; font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em;
+  }
+  .brand h1 span { color: var(--accent); font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+  .meta {
+    text-align: right; font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: var(--muted);
+  }
+  .meta .refresh { color: var(--accent2); }
+  .grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .card {
+    background: linear-gradient(180deg, var(--panel2), var(--panel));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 16px 18px;
+    min-width: 0;
+  }
+  .card h2 {
+    margin: 0 0 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .span-4 { grid-column: span 4; }
+  .span-5 { grid-column: span 5; }
+  .span-6 { grid-column: span 6; }
+  .span-7 { grid-column: span 7; }
+  .span-8 { grid-column: span 8; }
+  .span-12 { grid-column: span 12; }
+  @media (max-width: 900px) {
+    .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+    .meta { text-align: left; }
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; font-weight: 600;
+    padding: 4px 10px; border-radius: 999px; border: 1px solid transparent;
+  }
+  .badge .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: currentColor;
+    box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 25%, transparent);
+  }
+  .badge.live { color: var(--live); background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.25); }
+  .badge.dry { color: var(--dry); background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.25); }
+  .badge.dead, .badge.off, .badge.unknown {
+    color: var(--dead); background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.25);
+  }
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+  .kv .item { min-width: 0; }
+  .kv .label { font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.04em; }
+  .kv .value {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.95rem; font-weight: 500;
+    margin-top: 2px; word-break: break-word;
+  }
+  .big {
+    font-family: "IBM Plex Mono", monospace; font-size: 2rem; font-weight: 600;
+    letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .slots {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .slot {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.8rem;
+    padding: 7px 10px; border-radius: 10px; border: 1px solid var(--border2);
+    background: var(--bg2); color: var(--muted); min-width: 64px; text-align: center;
+  }
+  .slot.done { color: var(--done); border-color: rgba(52,211,153,0.35); background: rgba(52,211,153,0.08); }
+  .slot.next { color: var(--next); border-color: rgba(56,189,248,0.45); background: rgba(56,189,248,0.1);
+    box-shadow: 0 0 0 1px rgba(56,189,248,0.15); }
+  .slot.pending { color: var(--muted); }
+  .period-label {
+    font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em;
+    margin: 10px 0 6px;
+  }
+  .progress {
+    height: 6px; border-radius: 999px; background: var(--bg2); overflow: hidden; margin: 10px 0 4px;
+  }
+  .progress > i {
+    display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 999px;
+  }
+  .note {
+    font-size: 0.88rem; color: var(--muted); line-height: 1.45;
+    background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2);
+    border-radius: 10px; padding: 10px 12px;
+  }
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list li {
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.88rem; line-height: 1.4;
+  }
+  .list li:last-child { border-bottom: 0; }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+  .muted { color: var(--muted); }
+  .dim { color: var(--dim); }
+  .tiny { font-size: 0.75rem; }
+  .status-block {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; line-height: 1.45;
+    white-space: pre-wrap; word-break: break-word; color: #c5d0de;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; max-height: 220px; overflow: auto;
+  }
+  .section-title { font-weight: 600; color: var(--accent2); margin-bottom: 4px; }
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .err { color: var(--dead); font-size: 0.9rem; }
+  footer {
+    margin-top: 22px; color: var(--dim); font-size: 0.75rem;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>Flop Farmer <span>· Technocore</span></h1>
+        <div class="sub">Local grind dashboard · auto-refresh from box files</div>
+      </div>
+      <div class="meta">
+        <div>Generated: <span id="generated">—</span></div>
+        <div class="refresh">Next fetch in <span id="countdown">30</span>s · <span id="fetchState">idle</span></div>
+      </div>
+    </header>
+
+    <div id="error" class="err" hidden></div>
+
+    <div class="grid">
+      <!-- Watcher -->
+      <section class="card span-4">
+        <h2>Watcher <span id="watcherBadge" class="badge unknown"><span class="dot"></span>—</span></h2>
+        <div class="kv">
+          <div class="item"><div class="label">PID</div><div class="value" id="wPid">—</div></div>
+          <div class="item"><div class="label">Uptime</div><div class="value" id="wEtime">—</div></div>
+          <div class="item"><div class="label">Mode</div><div class="value" id="wMode">—</div></div>
+          <div class="item"><div class="label">WATCH_DRY</div><div class="value" id="wDry">—</div></div>
+        </div>
+        <div class="period-label">Heartbeat</div>
+        <div class="kv">
+          <div class="item"><div class="label">Last HB</div><div class="value tiny" id="hbWhen">—</div></div>
+          <div class="item"><div class="label">Tip seq</div><div class="value" id="hbTip">—</div></div>
+          <div class="item" style="grid-column:1/-1"><div class="label">Open claims (HB)</div><div class="value mono" id="hbOpen">—</div></div>
+        </div>
+      </section>
+
+      <!-- Scorer -->
+      <section class="card span-8">
+        <h2>Latest scorer <span class="dim mono" id="scorerFile" style="text-transform:none;letter-spacing:0;font-weight:400"></span></h2>
+        <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;margin-bottom:12px">
+          <div>
+            <div class="label dim" style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.04em">Score</div>
+            <div class="big" id="scScore">—</div>
+          </div>
+          <div class="kv" style="flex:1">
+            <div class="item"><div class="label">own_actions</div><div class="value" id="scOwn">—</div></div>
+            <div class="item"><div class="label">results</div><div class="value" id="scResults">—</div></div>
+            <div class="item"><div class="label">useful</div><div class="value" id="scUseful">—</div></div>
+            <div class="item"><div class="label">given</div><div class="value" id="scGiven">—</div></div>
+            <div class="item"><div class="label">rank / miner</div><div class="value" id="scRank">—</div></div>
+            <div class="item"><div class="label">engine warm / seq</div><div class="value" id="scEngine">—</div></div>
+          </div>
+        </div>
+        <div class="tiny muted" id="scorerMeta">—</div>
+        <div class="note" style="margin-top:10px" id="scorerNote">—</div>
+      </section>
+
+      <!-- Grind slots -->
+      <section class="card span-7">
+        <h2>Today’s grind <span class="mono" id="grindCount" style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--accent)"></span></h2>
+        <div class="progress"><i id="grindBar" style="width:0%"></i></div>
+        <div class="tiny muted" id="grindNext" style="margin-bottom:8px">—</div>
+        <div class="period-label">Day (5)</div>
+        <div class="slots" id="slotsDay"></div>
+        <div class="period-label">Night (5)</div>
+        <div class="slots" id="slotsNight"></div>
+      </section>
+
+      <!-- Quiet + claims -->
+      <section class="card span-5">
+        <h2>Quiet mode · until testnet</h2>
+        <div class="note" id="quietNote">—</div>
+        <div class="period-label" style="margin-top:14px">Open claims</div>
+        <ul class="list" id="claimsList"><li class="muted">—</li></ul>
+      </section>
+
+      <!-- Activity -->
+      <section class="card span-7">
+        <h2>Recent grind activity</h2>
+        <div id="statusSections"></div>
+        <div class="period-label">Recent RESULT files</div>
+        <ul class="list" id="resultFiles"></ul>
+      </section>
+
+      <!-- Close Call -->
+      <section class="card span-5">
+        <h2>Close Call</h2>
+        <div class="kv" id="ccKv">
+          <div class="item"><div class="label">Position</div><div class="value" id="ccPos">—</div></div>
+          <div class="item"><div class="label">Cash / fees</div><div class="value" id="ccCash">—</div></div>
+          <div class="item"><div class="label">Score @ ref</div><div class="value" id="ccScore">—</div></div>
+          <div class="item"><div class="label">Hours to lock</div><div class="value" id="ccLock">—</div></div>
+        </div>
+        <div class="period-label">Open offers</div>
+        <ul class="list" id="ccOffers"><li class="muted">—</li></ul>
+        <div class="tiny muted" id="ccMeta"></div>
+      </section>
+
+      <!-- X posts -->
+      <section class="card span-12">
+        <h2>Recent X posts</h2>
+        <ul class="list" id="xPosts"><li class="muted">—</li></ul>
+      </section>
+    </div>
+
+    <footer>
+      Sources: /home/box/flop-labs · rebuild via update_dashboard.py · served on :8787
+    </footer>
+  </div>
+
+<script>
+const REFRESH_MS = 30000;
+let countdown = REFRESH_MS / 1000;
+
+function $(id) { return document.getElementById(id); }
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
+}
+
+function setBadge(el, mode) {
+  const m = (mode || "unknown").toLowerCase();
+  el.className = "badge " + (m === "live" ? "live" : m === "dry" ? "dry" : m === "dead" || m === "off" ? "dead" : "unknown");
+  el.innerHTML = `<span class="dot"></span>${esc(mode || "—")}`;
+}
+
+function renderSlots(container, slots, next) {
+  container.innerHTML = "";
+  if (!slots || !slots.length) {
+    container.innerHTML = `<div class="muted tiny">No slots</div>`;
+    return;
+  }
+  const nextKey = next ? `${next.period}:${next.time}` : null;
+  for (const s of slots) {
+    const div = document.createElement("div");
+    const isNext = nextKey === `${s.period}:${s.time}`;
+    div.className = "slot " + (s.done ? "done" : isNext ? "next" : "pending");
+    div.textContent = s.time + (s.done ? " ✓" : isNext ? " →" : "");
+    div.title = s.done ? "done" : isNext ? "next" : "pending";
+    container.appendChild(div);
+  }
+}
+
+function render(data) {
+  $("generated").textContent = data.generated_at || "—";
+
+  const w = data.watcher || {};
+  setBadge($("watcherBadge"), w.mode);
+  $("wPid").textContent = w.pid ?? "—";
+  $("wEtime").textContent = w.etime || "—";
+  $("wMode").textContent = w.mode || "—";
+  $("wDry").textContent = w.dry === true ? "1 (dry)" : w.dry === false ? "unset (LIVE)" : "—";
+
+  const hb = data.heartbeat || {};
+  $("hbWhen").textContent = hb.when_wat || "—";
+  $("hbTip").textContent = hb.tip_seq ?? "—";
+  $("hbOpen").textContent = hb.open_claims || "none";
+
+  const sc = data.scorer || {};
+  $("scorerFile").textContent = sc.file || "";
+  $("scScore").textContent = sc.score ?? "—";
+  let own = sc.own_actions ?? "—";
+  if (sc.own_terms_quarantined) own += ` (q≥${sc.quarantine_own_actions ?? "?"})`;
+  $("scOwn").textContent = own;
+  $("scResults").textContent = sc.results ?? "—";
+  $("scUseful").textContent = sc.useful ?? "—";
+  $("scGiven").textContent = sc.given ?? "—";
+  $("scRank").textContent = `${sc.rank ?? "—"} / ${sc.miner_rank ?? "—"}`;
+  $("scEngine").textContent = `${sc.engine_warm ? "warm" : "cold"} / ${sc.engine_seq ?? "—"}`;
+  $("scorerMeta").textContent = `${sc.when_wat || sc.mtime || "—"} · faucet/testnet: ${sc.faucet_or_testnet ? "YES" : "closed"} · changed: ${sc.changed}`;
+  $("scorerNote").textContent = sc.note || "—";
+
+  const g = data.grind || {};
+  $("grindCount").textContent = `${g.done_count ?? 0} / ${g.total ?? 0}`;
+  const pct = g.total ? Math.round(100 * (g.done_count || 0) / g.total) : 0;
+  $("grindBar").style.width = pct + "%";
+  const nx = g.next;
+  $("grindNext").textContent = nx
+    ? `Next: ${nx.time} (${nx.period}) · ${g.date || ""} · until ${g.until || "testnet"}`
+    : `All slots done for ${g.date || "today"} · until ${g.until || "testnet"}`;
+  renderSlots($("slotsDay"), g.day, nx);
+  renderSlots($("slotsNight"), g.night, nx);
+
+  const q = data.quiet_mode || {};
+  $("quietNote").textContent = q.note || q.schedule_rules || "—";
+
+  const claims = data.open_claims || [];
+  $("claimsList").innerHTML = claims.length
+    ? claims.map(c => `<li><span class="mono">${esc(c.job_id)}</span>
+        <span class="dim"> · ${esc(c.filter_score ?? "")}</span><br/>
+        <span class="muted">${esc(c.title || "")}</span>
+        <div class="tiny dim">${esc(c.claim_time_wat || "")} · ${esc(c.status || "")}</div></li>`).join("")
+    : `<li class="muted">No open claims</li>`;
+
+  const status = data.status || {};
+  const secs = status.sections || [];
+  $("statusSections").innerHTML = secs.length
+    ? secs.map(s => `<div style="margin-bottom:10px">
+        <div class="section-title">${esc(s.title)}</div>
+        <div class="status-block">${esc(s.body || "").slice(0, 900)}</div>
+      </div>`).join("")
+    : `<div class="muted">No STATUS.md</div>`;
+
+  const rfs = data.recent_results || [];
+  $("resultFiles").innerHTML = rfs.length
+    ? rfs.map(r => `<li><span class="mono">${esc(r.file)}</span>
+        <span class="dim tiny"> · ${esc(r.mtime)}</span>
+        <div class="muted tiny">${esc(r.preview)}</div></li>`).join("")
+    : `<li class="muted">—</li>`;
+
+  const cc = data.close_call || {};
+  const pos = cc.position || {};
+  $("ccPos").textContent = pos.side
+    ? `${pos.side} ${pos.qty} @ ${pos.px}`
+    : "—";
+  $("ccCash").textContent = pos.cash != null
+    ? `${Number(pos.cash).toFixed(2)} / ${Number(pos.fees || 0).toFixed(2)}`
+    : "—";
+  const boards = cc.boards || {};
+  $("ccScore").textContent = boards.score_at_ref != null
+    ? `${boards.score_at_ref} (ref ${boards.ref ?? "—"})`
+    : "—";
+  $("ccLock").textContent = cc.hours_to_lock != null ? Number(cc.hours_to_lock).toFixed(1) : "—";
+
+  const offers = cc.open_offers || [];
+  $("ccOffers").innerHTML = offers.length
+    ? offers.map(o => `<li class="mono">${esc(o.id)} · ${esc(o.side)} ${esc(o.qty)} @ ${esc(o.px)} · until ${esc(o.until)}</li>`).join("")
+    : `<li class="muted">None listed</li>`;
+  const unproven = cc.unproven ? Object.entries(cc.unproven).map(([k,v]) => `${k}: ${v}`).join("; ") : "";
+  $("ccMeta").textContent = [
+    cc.check_ts_wat ? `checked ${cc.check_ts_wat}` : null,
+    unproven ? `unproven: ${unproven}` : null,
+  ].filter(Boolean).join(" · ");
+
+  const xp = data.x_posts || [];
+  $("xPosts").innerHTML = xp.length
+    ? xp.map(p => {
+        const when = p.date ? `${p.date} ${p.time_wat || ""}`.trim() : (p.time || "");
+        const topic = p.topic || p.note || "";
+        const link = p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.url.replace("https://x.com/","x.com/"))}</a>` : `<span class="dim">${esc(p.status || "no url")}</span>`;
+        return `<li>${esc(when)} · ${link}<div class="muted">${esc(topic)}</div></li>`;
+      }).join("")
+    : `<li class="muted">—</li>`;
+}
+
+async function load() {
+  $("fetchState").textContent = "fetching…";
+  try {
+    // Prefer data.json next to this page; bust cache
+    const res = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    render(data);
+    $("error").hidden = true;
+    $("fetchState").textContent = "ok";
+  } catch (e) {
+    $("error").hidden = false;
+    $("error").textContent = "Failed to load data.json: " + e.message +
+      " — data may be stale; sync a fresh data.json from the operator box.";
+    $("fetchState").textContent = "error";
+  }
+}
+
+function tick() {
+  countdown -= 1;
+  if (countdown <= 0) {
+    countdown = REFRESH_MS / 1000;
+    load();
+  }
+  $("countdown").textContent = String(countdown);
+}
+
+load();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>

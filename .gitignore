@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.pem
+identity.pem
+.env
+.env.*
+!.env.example
+.railway/
+*.log
+__pycache__/

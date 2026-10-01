@@ -1,0 +1,7 @@
+.git
+*.pem
+identity.pem
+.env
+.env.*
+__pycache__
+*.log

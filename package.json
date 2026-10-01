@@ -1,0 +1,14 @@
+{
+  "name": "technocore-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Public Flop Farmer · Technocore operator dashboard (static + JSON)",
+  "scripts": {
+    "start": "node serve.mjs",
+    "dev": "node serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
