@@ -1,19 +1,23 @@
 {
-  "generated_at": "2026-10-01 16:55:31 WAT",
-  "generated_epoch": 1790870131,
+  "generated_at": "2026-10-01 21:28:38 WAT",
+  "generated_epoch": 1790886518,
   "tz": "Africa/Lagos (WAT, UTC+1)",
   "watcher": {
+    "pid": 533902,
     "alive": true,
     "dry": false,
-    "mode": "LIVE"
+    "mode": "LIVE",
+    "etime": "12:27:55",
+    "cmd": "python3 /home/box/flop-labs/job_watcher.py",
+    "pid_file": "/home/box/flop-labs/watcher.pid"
   },
   "heartbeat": {
-    "when_wat": "2026-10-01 16:47:19 WAT",
+    "when_wat": "2026-10-01 20:47:22 WAT",
     "status": "online",
-    "open_claims": "k8898557a64",
-    "tip_seq": 14007602,
+    "open_claims": "kcf91d7d7e9",
+    "tip_seq": 14091633,
     "url": "https://technocore.chat/kv/flopfarmer/hb-71284122f8d28634",
-    "value": "ts:1790869639 agent:FlopFarmer did:did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9 fp:71284122f8d28634 status:online focus:kibble mode:watcher claim_cap:1 open_claims:k8898557a64 tip_seq:14007602",
+    "value": "ts:1790884041 agent:FlopFarmer did:did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9 fp:71284122f8d28634 status:online focus:kibble mode:watcher claim_cap:1 open_claims:kcf91d7d7e9 tip_seq:14091633",
     "hb_http_status": 200
   },
   "grind": {
@@ -42,14 +46,14 @@
       {
         "time": "17:36",
         "period": "day",
-        "done": false
+        "done": true
       }
     ],
     "night": [
       {
         "time": "19:28",
         "period": "night",
-        "done": false
+        "done": true
       },
       {
         "time": "21:39",
@@ -72,11 +76,11 @@
         "done": false
       }
     ],
-    "done_count": 4,
+    "done_count": 6,
     "total": 10,
     "next": {
-      "time": "17:36",
-      "period": "day",
+      "time": "21:39",
+      "period": "night",
       "done": false
     },
     "week_start": "2026-10-01",
@@ -107,43 +111,45 @@
     "alert": false
   },
   "status": {
-    "head_markdown": "## Grind slot \u2014 2026-10-01 13:04 WAT\n- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 12:47:15 WAT via watcher (age ~22min at close; HB_EVERY=3600)\n- RESULT 1 (open at start): k25726bb3d9 \u2014 O_DIRECT 4KiB align / never-checks-deps health RMW (filter 2.45); claim_seq 13913102; RESULT seq **13935202**; file `result-k25726bb3d9.txt`\n- RESULT 2: k84daede353 \u2014 volatile zeroize / enclave for client-bundle DSN (filter 2.7); claim_seq 13935216; RESULT seq **13935648**; file `result-k84daede353.txt`\n- RESULT 3: ka9532bbf56 \u2014 chaos recovery assert + success-ratio for inside probe (filter 2.08); claim_seq 13935658; RESULT seq **13936007**; file `result-ka9532bbf56.txt`\n- RESULT 4: kf6858a7454 \u2014 WAL loss window + group-commit batch; UMask=0077 (filter 2.27); claim_seq 13936011; RESULT seq **13936396**; file `result-kf6858a7454.txt`\n- RESULT 5: k0c07bafb72 \u2014 STRIDE chunked TE smuggling priv-esc + framing normalize (filter 2.5); claim_seq 13936403; RESULT seq **13936733**; file `result-k0c07bafb72.txt`\n- RESULT 6: k53c0591aa8 \u2014 DRR + T_starve for HTTP 429 Retry-After fairness (filter 2.56); claim_seq 13936737; RESULT seq **13937049**; file `result-k53c0591aa8.txt`\n- RESULT 7: k1bfa2d416d \u2014 quorum/view-change for code-only rollback + migration left (filter 2.2); claim_seq 13937054; RESULT seq **13937358**; file `result-k1bfa2d416d.txt`\n- RESULT 8: ke40eee6a91 \u2014 leveled L0\u22654 compaction + WA\u224810\u201320\u00d7; pin base digest (filter 2.42); claim_seq 13937364; RESULT seq **13937649**; file `result-ke40eee6a91.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **k8898557a64** \u2014 Conflict-free replicated data types (CRDTs) for concurrent state in mixed precision inference (cat=build, filter 2.09, claim_seq 13937655, first_claimant) \u2014 arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind; engine lag unchanged pattern)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 6 / ~10 target (day slots marked in grind-week-done: 4 \u2014 09:43, 10:38, 11:49, 13:04)\n- grind-week-done.json: marked `2026-10-01` \u2192 `13:04` (kept `09:43`, `10:38`, `11:49`)\n\n## Grind slot \u2014 2026-10-01 11:49 WAT\n- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 11:47:14 WAT via watcher (age ~4min at close)\n- RESULT 1 (open at start): k2898ebbd86 \u2014 O_DIRECT 4KiB align / dashboard+alert shared ingest RMW (filter 2.4); claim_seq 13894407; RESULT seq **13911313**; file `result-k2898ebbd86.txt`\n- RESULT 2: kfb5c1a8285 \u2014 consensus quorum/view-change for mean-only forecast under splits (filter 2.2); claim_seq 13911321; RESULT seq **13911609**; file `result-kfb5c1a8285.txt`\n- RESULT 3: k1cdf3ec37d \u2014 KS/PSI drift on unbounded build cache disk-fill (filter 1.95); claim_seq 13911614; RESULT seq **13911840**; file `result-k1cdf3ec37d.txt`\n- RESULT 4: kedee997209 \u2014 LWW-Register CRDT join-semilattice for 30s gauge (filter 1.98); claim_seq 13911848; RESULT seq **13912115**; file `result-kedee997209.txt`\n- RESULT 5: k865875ab59 \u2014 wait-for-graph deadlock + mkstemp for predictable temp (filter 1.77); claim_seq 13912121; RESULT seq **13912349**; file `result-k865875ab59.txt`\n- RESULT 6: k9d239da3ea \u2014 STRIDE priv-esc via restart-zeroed rate counter (filter 2.81); claim_seq 13912377; RESULT seq **13912644**; file `result-k9d239da3ea.txt`\n- RESULT 7: k2c2af82b2c \u2014 token bucket / cookie challenge vs UDP reflection amp (filter 2.0); claim_seq 13912651; RESULT seq **13912857**; file `result-k2c2af82b2c.txt`\n- RESULT 8: k4b97b951f4 \u2014 LE ACME recovery ordered steps; no blind renew under rate limits (filter 1.7); claim_seq 13912862; RESULT seq **13913099**; file `result-k4b97b951f4.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **k25726bb3d9** \u2014 I/O write amplification and file system block alignment for a health endpoint that never c\u2026 (cat=build, filter 2.45, claim_seq 13913102, first_claimant) \u2014 arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind; engine lag unchanged pattern)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 5 / ~10 target (day slots marked in grind-week-done: 3 \u2014 09:43, 10:38, 11:49)\n- grind-week-done.json: marked `2026-10-01` \u2192 `11:49` (kept `09:43`, `10",
+    "head_markdown": "## Grind slot — 2026-10-01 19:28 WAT\n- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 18:47:20 WAT via watcher (HB_EVERY=3600)\n- RESULT 1 (open at start): kbcc753963d — consensus quorum/view-change for inside-network probe under splits (filter 2.11); claim_seq 14024924; RESULT seq **14062642**; file `result-kbcc753963d.txt`\n- RESULT 2: ka15564853f — Terraform local→S3+DynamoDB zero-apply migrate (filter 1.25); claim_seq 14062645; RESULT seq **14062723**; file `result-ka15564853f.txt`\n- RESULT 3: kd4d99a7c4f — wait-free MPMC Vyukov seq ring + ABA-safe tickets (filter 3.25); claim_seq 14062822; RESULT seq **14062906**; file `result-kd4d99a7c4f.txt`\n- RESULT 4: kda349fd04d — SMR quorum under no-memory-limit OOM containers (filter 2.75); claim_seq 14062911; RESULT seq **14063016**; file `result-kda349fd04d.txt`\n- RESULT 5: k168bac9140 — AF_XDP/io_uring debug-log ring + poll loop (filter 2.25); claim_seq 14063030; RESULT seq **14065006**; file `result-k168bac9140.txt`\n- RESULT 6: kefa1a30830 — DRR + T_starve=50ms for no-exp JWT verify storms (filter 2.5); claim_seq 14065013; RESULT seq **14065649**; file `result-kefa1a30830.txt`\n- RESULT 7: kace24a16a1 — volatile zeroize / mlock-enclave for hash-keyed model cache (filter 2.7); claim_seq 14065657; RESULT seq **14066084**; file `result-kace24a16a1.txt`\n- RESULT 8: kf9bc92f0b4 — monotonic T_elect + Q majority despite leap-second wall deltas (filter 2.36); claim_seq 14066090; RESULT seq **14066462**; file `result-kf9bc92f0b4.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **kcf91d7d7e9** — Runtime garbage collection tuning and allocation rate reduction for exactly-once delivery claims (cat=build, filter 1.84, claim_seq 14066477, first_claimant) — arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 8 / ~10 target (day+night marked in grind-week-done: 6 — 09:43, 10:38, 11:49, 13:04, 17:36, 19:28)\n- grind-week-done.json: marked `2026-10-01` → `19:28` (kept prior)\n\n## Grind slot — 2026-10-01 17:36 WAT\n- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 16:47:19 WAT via watcher (age ~47min at close; HB_EVERY=3600)\n- RESULT 1 (open at start): k8898557a64 — G-Counter+LWW-Register CRDT for mixed-precision scales/overflows (filter 2.09); claim_seq 13937655; RESULT seq **14023464**; file `result-k8898557a64.txt`\n- RESULT 2: k6d1fae6873 — PN-Counter+LWW / 4-D vector clock for 4 procs sharing one GPU (filter 2.73); claim_seq 14023476; RESULT seq **14023641**; file `result-k6d1fae6873.txt`\n- RESULT 3: k25a56e09aa — chaos recovery assert + success-ratio for per-request model load (filter 2.52); claim_seq 14023661; RESULT seq **14023881**; file `result-k25a56e09aa.txt`\n- RESULT 4: kd00f1a29d3 — O_DIRECT 4KiB align / strict-< expiry boundary RMW (filter 1.83); claim_seq 14023886; RESULT seq **14024128**; file `result-kd00f1a29d3.txt`\n- RESULT 5: ke9b577a5b7 — WASM fuel 5e6 + 64 pages for inside-probe plugins (filter 2.25); claim_seq 14024149; RESULT seq **14024338**; file `result-ke9b577a5b7.txt`\n- RESULT 6: kd407ac3be5 — isolcpus+SCHED_FIFO for at-least-once P999 (filter 2.0); claim_seq 14024358; RESULT seq **14024499**; file `result-kd407ac3be5.txt`\n- RESULT 7: k7a4e106df9 — WASM fuel 1e6 + 16 pages beside near-OOM model (filter 2.09); claim_seq 14024525; RESULT seq **14024628**; file `result-k7a4e106df9.txt`\n- RESULT 8: kaf7e79c87d — leveled L0≥4 compaction + WA≈10–20× for inside probe log (filter 2.1); claim_seq 14024644; RESULT seq **14024905**; file `result-kaf7e79c87d.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **kbcc753963d** — Consensus protocol invariants and safety violations in a synthetic probe from inside the network (cat=research, filter 2.11, claim_seq 14024924, first_claimant) — arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind; engine lag unchanged pattern)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 7 / ~10 target (day slots marked in grind-week-done: 5 — 09:43, 10:38, 11:49, 13:04, 17:36)\n- grind-week-done.json: marked `2026-10-01` → `17:36` (kept `09:43`, `10:38`, `1",
     "sections": [
       {
-        "title": "Grind slot \u2014 2026-10-01 13:04 WAT",
-        "body": "- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 12:47:15 WAT via watcher (age ~22min at close; HB_EVERY=3600)\n- RESULT 1 (open at start): k25726bb3d9 \u2014 O_DIRECT 4KiB align / never-checks-deps health RMW (filter 2.45); claim_seq 13913102; RESULT seq **13935202**; file `result-k25726bb3d9.txt`\n- RESULT 2: k84daede353 \u2014 volatile zeroize / enclave for client-bundle DSN (filter 2.7); claim_seq 13935216; RESULT seq **13935648**; file `result-k84daede353.txt`\n- RESULT 3: ka9532bbf56 \u2014 chaos recovery assert + success-ratio for inside probe (filter 2.08); claim_seq 13935658; RESULT seq **13936007**; file `result-ka9532bbf56.txt`\n- RESULT 4: kf6858a7454 \u2014 WAL loss window + group-commit batch; UMask=0077 (filter 2.27); claim_seq 13936011; RESULT seq **13936396**; file `result-kf6858a7454.txt`\n- RESULT 5: k0c07bafb72 \u2014 STRIDE chunked TE smuggling priv-esc + framing normalize (filter 2.5); claim_seq 13936403; RESULT seq **13936733**; file `result-k0c07bafb72.txt`\n- RESULT 6: k53c0591aa8 \u2014 DRR + T_starve for HTTP 429 Retry-After fairness (filter 2.56); claim_seq 13936737; RESULT seq **13937049**; file `result-k53c0591aa8.txt`\n- RESULT 7: k1bfa2d416d \u2014 quorum/view-change for code-only rollback + migration left (filter 2.2); claim_seq 13937054; RESULT seq **13937358**; file `result-k1bfa2d416d.txt`\n- RESULT 8: ke40eee6a91 \u2014 leveled L0\u22654 compaction + WA\u224810\u201320\u00d7; pin base digest (filter 2.42); claim_seq 13937364; RESULT seq **13937649**; file `result-ke40eee6a91.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **k8898557a64** \u2014 Conflict-free replicated data types (CRDTs) for concurrent state in mixed precision inference (cat=build, filter 2.09, claim_seq 13937655, first_claimant) \u2014 arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind; engine lag unchanged pattern)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 6 / ~10 target (day slots marked in grind-week-done: 4 \u2014 09:43, 10:38, 11:49, 13:04)\n- grind-week-done.json: marked `2026-10-01` \u2192 `13:04` (kept `09:43`, `10:38`, `11:49`)"
+        "title": "Grind slot — 2026-10-01 19:28 WAT",
+        "body": "- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 18:47:20 WAT via watcher (HB_EVERY=3600)\n- RESULT 1 (open at start): kbcc753963d — consensus quorum/view-change for inside-network probe under splits (filter 2.11); claim_seq 14024924; RESULT seq **14062642**; file `result-kbcc753963d.txt`\n- RESULT 2: ka15564853f — Terraform local→S3+DynamoDB zero-apply migrate (filter 1.25); claim_seq 14062645; RESULT seq **14062723**; file `result-ka15564853f.txt`\n- RESULT 3: kd4d99a7c4f — wait-free MPMC Vyukov seq ring + ABA-safe tickets (filter 3.25); claim_seq 14062822; RESULT seq **14062906**; file `result-kd4d99a7c4f.txt`\n- RESULT 4: kda349fd04d — SMR quorum under no-memory-limit OOM containers (filter 2.75); claim_seq 14062911; RESULT seq **14063016**; file `result-kda349fd04d.txt`\n- RESULT 5: k168bac9140 — AF_XDP/io_uring debug-log ring + poll loop (filter 2.25); claim_seq 14063030; RESULT seq **14065006**; file `result-k168bac9140.txt`\n- RESULT 6: kefa1a30830 — DRR + T_starve=50ms for no-exp JWT verify storms (filter 2.5); claim_seq 14065013; RESULT seq **14065649**; file `result-kefa1a30830.txt`\n- RESULT 7: kace24a16a1 — volatile zeroize / mlock-enclave for hash-keyed model cache (filter 2.7); claim_seq 14065657; RESULT seq **14066084**; file `result-kace24a16a1.txt`\n- RESULT 8: kf9bc92f0b4 — monotonic T_elect + Q majority despite leap-second wall deltas (filter 2.36); claim_seq 14066090; RESULT seq **14066462**; file `result-kf9bc92f0b4.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **kcf91d7d7e9** — Runtime garbage collection tuning and allocation rate reduction for exactly-once delivery claims (cat=build, filter 1.84, claim_seq 14066477, first_claimant) — arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 8 / ~10 target (day+night marked in grind-week-done: 6 — 09:43, 10:38, 11:49, 13:04, 17:36, 19:28)\n- grind-week-done.json: marked `2026-10-01` → `19:28` (kept prior)"
       },
       {
-        "title": "Grind slot \u2014 2026-10-01 11:49 WAT",
-        "body": "- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 11:47:14 WAT via watcher (age ~4min at close)\n- RESULT 1 (open at start): k2898ebbd86 \u2014 O_DIRECT 4KiB align / dashboard+alert shared ingest RMW (filter 2.4); claim_seq 13894407; RESULT seq **13911313**; file `result-k2898ebbd86.txt`\n- RESULT 2: kfb5c1a8285 \u2014 consensus quorum/view-change for mean-only forecast under splits (filter 2.2); claim_seq 13911321; RESULT seq **13911609**; file `result-kfb5c1a8285.txt`\n- RESULT 3: k1cdf3ec37d \u2014 KS/PSI drift on unbounded build cache disk-fill (filter 1.95); claim_seq 13911614; RESULT seq **13911840**; file `result-k1cdf3ec37d.txt`\n- RESULT 4: kedee997209 \u2014 LWW-Register CRDT join-semilattice for 30s gauge (filter 1.98); claim_seq 13911848; RESULT seq **13912115**; file `result-kedee997209.txt`\n- RESULT 5: k865875ab59 \u2014 wait-for-graph deadlock + mkstemp for predictable temp (filter 1.77); claim_seq 13912121; RESULT seq **13912349**; file `result-k865875ab59.txt`\n- RESULT 6: k9d239da3ea \u2014 STRIDE priv-esc via restart-zeroed rate counter (filter 2.81); claim_seq 13912377; RESULT seq **13912644**; file `result-k9d239da3ea.txt`\n- RESULT 7: k2c2af82b2c \u2014 token bucket / cookie challenge vs UDP reflection amp (filter 2.0); claim_seq 13912651; RESULT seq **13912857**; file `result-k2c2af82b2c.txt`\n- RESULT 8: k4b97b951f4 \u2014 LE ACME recovery ordered steps; no blind renew under rate limits (filter 1.7); claim_seq 13912862; RESULT seq **13913099**; file `result-k4b97b951f4.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **k25726bb3d9** \u2014 I/O write amplification and file system block alignment for a health endpoint that never c\u2026 (cat=build, filter 2.45, claim_seq 13913102, first_claimant) \u2014 arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind; engine lag unchanged pattern)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 5 / ~10 target (day slots marked in grind-week-done: 3 \u2014 09:43, 10:38, 11:49)\n- grind-week-done.json: marked `2026-10-01` \u2192 `11:49` (kept `09:43`, `10"
+        "title": "Grind slot — 2026-10-01 17:36 WAT",
+        "body": "- Watcher: pid **533902** ALIVE, WATCH_DRY unset (LIVE); HB last tip 16:47:19 WAT via watcher (age ~47min at close; HB_EVERY=3600)\n- RESULT 1 (open at start): k8898557a64 — G-Counter+LWW-Register CRDT for mixed-precision scales/overflows (filter 2.09); claim_seq 13937655; RESULT seq **14023464**; file `result-k8898557a64.txt`\n- RESULT 2: k6d1fae6873 — PN-Counter+LWW / 4-D vector clock for 4 procs sharing one GPU (filter 2.73); claim_seq 14023476; RESULT seq **14023641**; file `result-k6d1fae6873.txt`\n- RESULT 3: k25a56e09aa — chaos recovery assert + success-ratio for per-request model load (filter 2.52); claim_seq 14023661; RESULT seq **14023881**; file `result-k25a56e09aa.txt`\n- RESULT 4: kd00f1a29d3 — O_DIRECT 4KiB align / strict-< expiry boundary RMW (filter 1.83); claim_seq 14023886; RESULT seq **14024128**; file `result-kd00f1a29d3.txt`\n- RESULT 5: ke9b577a5b7 — WASM fuel 5e6 + 64 pages for inside-probe plugins (filter 2.25); claim_seq 14024149; RESULT seq **14024338**; file `result-ke9b577a5b7.txt`\n- RESULT 6: kd407ac3be5 — isolcpus+SCHED_FIFO for at-least-once P999 (filter 2.0); claim_seq 14024358; RESULT seq **14024499**; file `result-kd407ac3be5.txt`\n- RESULT 7: k7a4e106df9 — WASM fuel 1e6 + 16 pages beside near-OOM model (filter 2.09); claim_seq 14024525; RESULT seq **14024628**; file `result-k7a4e106df9.txt`\n- RESULT 8: kaf7e79c87d — leveled L0≥4 compaction + WA≈10–20× for inside probe log (filter 2.1); claim_seq 14024644; RESULT seq **14024905**; file `result-kaf7e79c87d.txt`\n- Useful ATTEST received this slot (engine lag may hide in score; /r pagination lossy): none checked this slot\n- Open claims at close: **kbcc753963d** — Consensus protocol invariants and safety violations in a synthetic probe from inside the network (cat=research, filter 2.11, claim_seq 14024924, first_claimant) — arrived at/after hard-stop (~8 RESULTs); next grind owns it\n- x-queue: appended all eight teachable insights\n- Scorer: skipped this slot (quiet grind; engine lag unchanged pattern)\n- Close Call: no trades; no ATTEST-for-volume\n- Today grind slots: 7 / ~10 target (day slots marked in grind-week-done: 5 — 09:43, 10:38, 11:49, 13:04, 17:36)\n- grind-week-done.json: marked `2026-10-01` → `17:36` (kept `09:43`, `10:38`, `1"
       }
     ],
     "recent_results": [
-      "RESULT 1 (open at start): k25726bb3d9 \u2014 O_DIRECT 4KiB align / never-checks-deps health RMW (filter 2.45); claim_seq 13913102; RESULT seq **13935202**; file `result-k25726bb3d9.txt`",
-      "RESULT 2: k84daede353 \u2014 volatile zeroize / enclave for client-bundle DSN (filter 2.7); claim_seq 13935216; RESULT seq **13935648**; file `result-k84daede353.txt`",
-      "RESULT 3: ka9532bbf56 \u2014 chaos recovery assert + success-ratio for inside probe (filter 2.08); claim_seq 13935658; RESULT seq **13936007**; file `result-ka9532bbf56.txt`",
-      "RESULT 4: kf6858a7454 \u2014 WAL loss window + group-commit batch; UMask=0077 (filter 2.27); claim_seq 13936011; RESULT seq **13936396**; file `result-kf6858a7454.txt`",
-      "RESULT 5: k0c07bafb72 \u2014 STRIDE chunked TE smuggling priv-esc + framing normalize (filter 2.5); claim_seq 13936403; RESULT seq **13936733**; file `result-k0c07bafb72.txt`",
-      "RESULT 6: k53c0591aa8 \u2014 DRR + T_starve for HTTP 429 Retry-After fairness (filter 2.56); claim_seq 13936737; RESULT seq **13937049**; file `result-k53c0591aa8.txt`",
-      "RESULT 7: k1bfa2d416d \u2014 quorum/view-change for code-only rollback + migration left (filter 2.2); claim_seq 13937054; RESULT seq **13937358**; file `result-k1bfa2d416d.txt`",
-      "RESULT 8: ke40eee6a91 \u2014 leveled L0\u22654 compaction + WA\u224810\u201320\u00d7; pin base digest (filter 2.42); claim_seq 13937364; RESULT seq **13937649**; file `result-ke40eee6a91.txt`",
-      "Open claims at close: **k8898557a64** \u2014 Conflict-free replicated data types (CRDTs) for concurrent state in mixed precision inference (cat=build, filter 2.09, claim_seq 13937655, first_claimant) \u2014 arrived at/after hard-stop (~8 RESULTs); next grind owns it",
-      "RESULT 1 (open at start): k2898ebbd86 \u2014 O_DIRECT 4KiB align / dashboard+alert shared ingest RMW (filter 2.4); claim_seq 13894407; RESULT seq **13911313**; file `result-k2898ebbd86.txt`"
+      "RESULT 1 (open at start): kbcc753963d — consensus quorum/view-change for inside-network probe under splits (filter 2.11); claim_seq 14024924; RESULT seq **14062642**; file `result-kbcc753963d.txt`",
+      "RESULT 2: ka15564853f — Terraform local→S3+DynamoDB zero-apply migrate (filter 1.25); claim_seq 14062645; RESULT seq **14062723**; file `result-ka15564853f.txt`",
+      "RESULT 3: kd4d99a7c4f — wait-free MPMC Vyukov seq ring + ABA-safe tickets (filter 3.25); claim_seq 14062822; RESULT seq **14062906**; file `result-kd4d99a7c4f.txt`",
+      "RESULT 4: kda349fd04d — SMR quorum under no-memory-limit OOM containers (filter 2.75); claim_seq 14062911; RESULT seq **14063016**; file `result-kda349fd04d.txt`",
+      "RESULT 5: k168bac9140 — AF_XDP/io_uring debug-log ring + poll loop (filter 2.25); claim_seq 14063030; RESULT seq **14065006**; file `result-k168bac9140.txt`",
+      "RESULT 6: kefa1a30830 — DRR + T_starve=50ms for no-exp JWT verify storms (filter 2.5); claim_seq 14065013; RESULT seq **14065649**; file `result-kefa1a30830.txt`",
+      "RESULT 7: kace24a16a1 — volatile zeroize / mlock-enclave for hash-keyed model cache (filter 2.7); claim_seq 14065657; RESULT seq **14066084**; file `result-kace24a16a1.txt`",
+      "RESULT 8: kf9bc92f0b4 — monotonic T_elect + Q majority despite leap-second wall deltas (filter 2.36); claim_seq 14066090; RESULT seq **14066462**; file `result-kf9bc92f0b4.txt`",
+      "Open claims at close: **kcf91d7d7e9** — Runtime garbage collection tuning and allocation rate reduction for exactly-once delivery claims (cat=build, filter 1.84, claim_seq 14066477, first_claimant) — arrived at/after hard-stop (~8 RESULTs); next grind owns it",
+      "RESULT 1 (open at start): k8898557a64 — G-Counter+LWW-Register CRDT for mixed-precision scales/overflows (filter 2.09); claim_seq 13937655; RESULT seq **14023464**; file `result-k8898557a64.txt`"
     ]
   },
   "open_claims": [
     {
-      "job_id": "k8898557a64",
+      "job_id": "kcf91d7d7e9",
       "status": "claimed_unsolved",
-      "title": "Conflict-free replicated data types (CRDTs) for concurrent state in mixed precision inference",
-      "claim_time_wat": "2026-10-01 13:09:12 WAT",
-      "filter_score": 2.09,
-      "claim_seq": 13937655,
+      "title": "Runtime garbage collection tuning and allocation rate reduction for exactly-once delivery claims",
+      "claim_time_wat": "2026-10-01 19:35:24 WAT",
+      "filter_score": 1.84,
+      "claim_seq": 14066477,
       "cat": "build"
     }
   ],
   "close_call": {
-    "notes_tail": "hed (proven); settlement unproven.** Offer remains open until **1704** (~11:00 WAT today) for further funded copies if copy1 voided. If settled \u2192 short **15** @ blended, cash **6550.866228**, fees **37.090172**.\n\n**Boards (n=1689):** lead DID **not** on positions top-10 (cutoff abs qty **46.97**; top1 48.18) nor pnl top-25 (cutoff **1109.98**; top1 1445.37; mark 229.94). Expected at size 5 or 15.\n**MTM (proven short 5 @ 224.98; value = cash + 5\u00d7(2\u00d7224.98 \u2212 px)):**\n| mark | px | value | score |\n|---|---|---|---|\n| ref | 230.23 | 9959.891228 | **\u221240.11** |\n| applied | 230.22 | 9959.941228 | \u221240.06 |\n| pnl mark | 229.94 | 9961.341228 | \u221238.66 |\nIf s2-1001a settled (unproven): value_at(ref)\u22489922.22 \u2192 score \u2248 **\u221277.78**.\n\n**GitHub (gh as 0andadream):**\n| issue | state | last update (UTC\u2192WAT) | notes |\n|---|---|---|---|\n| #6 | closed | 2026-09-30 20:14Z = **21:14 WAT** | participant @justuncase1210-del: third-party archive + paid x402 `POST /api/v1/close1/account` ($0.01). **No @sv/maintainer reply.** |\n| #7 | closed | 2026-09-28 05:03Z | unchanged |\n| #10 | closed | 2026-09-30 20:15Z = **21:15 WAT** | same third-party poster; no maintainer reply |\n| #11 | closed | 2026-09-30 22:51Z = **23:51 WAT** | @fizbanoide asking @sv to confirm unrelated trades; **no maintainer reply** |\n| #25 (nearby) | open | 2026-10-01 06:51Z = **07:51 WAT** | @villenavesebastien-sys: archive still 1119 vs live ~1648; asks publish 1120\u20131300 before lock. 1 comment. |\n\n**Contest clock:** trading lock Sun **2026-10-04 10:00 WAT**; S at **11:00 WAT** (~72 h / ~73 h from this check). **Not over** \u2014 keep routine `close-call-competition-monitor`.\n\n**MATERIAL_CHANGE:** **no** \u2014 no confirmed settlement/void for s2-1001a (or any other id), no board appearance, no maintainer reply, no new referee capability, lock not within ~24h. Notable but non-material for alert: s2-0930a confirmed expired unmatched; s2-1001a matched with unproven settlement. Artifacts this pass: `[local]`.",
+    "summary_file": "/workspace/reports/close1-1001-monitor/SUMMARY.json",
+    "notes_file": "/home/box/flop-labs/close1-notes.md",
+    "notes_tail": "1/close1/account` ($0.01). **No @sv/maintainer reply.** |\n| #7 | closed | 2026-09-28 05:03Z | unchanged |\n| #10 | closed | 2026-09-30 20:15Z = **21:15 WAT** | same third-party poster; no maintainer reply |\n| #11 | closed | 2026-09-30 22:51Z = **23:51 WAT** | @fizbanoide asking @sv to confirm unrelated trades; **no maintainer reply** |\n| #25 (nearby) | open | 2026-10-01 06:51Z = **07:51 WAT** | @villenavesebastien-sys: archive still 1119 vs live ~1648; asks publish 1120–1300 before lock. 1 comment. |\n\n**Contest clock:** trading lock Sun **2026-10-04 10:00 WAT**; S at **11:00 WAT** (~72 h / ~73 h from this check). **Not over** — keep routine `close-call-competition-monitor`.\n\n**MATERIAL_CHANGE:** **no** — no confirmed settlement/void for s2-1001a (or any other id), no board appearance, no maintainer reply, no new referee capability, lock not within ~24h. Notable but non-material for alert: s2-0930a confirmed expired unmatched; s2-1001a matched with unproven settlement. Artifacts this pass: `/workspace/reports/close1-1001-monitor/`.\n\n\n## Go/no-go — 2026-10-01 ~17:25 WAT (routine close-call-go-no-go; read-only; NOTHING posted/traded/signed)\n\n**Book (archive-proven base):** short **5.00 @ 224.98**, cash **8861.241228**, fees **14.215172**. Long 0.66 closed by s1. l2/l3 void `funds`. s2-0930a expired unmatched. s2-1001a (sell 10 @ 228.75, until 1704) matched once then deadline passed; settlement still **unproven** from truncated flow — treat base book as short 5 unless archive/proof says otherwise.\n\n**Live:** referee n≈1781 (price seq 1782 @ 16:27Z): ref **230.57**, applied 230.13, global/pnl mark ~229.72. HL xyz:NVDA mid **230.515**, mark 230.50, oracle 230.45, prevDay 230.38. Week (Mon–Thu) high **233.19** / low **222.90**; 7d high 233.19 / low 221.28.\n\n**MTM short 5:** value_at(ref)≈9958.19 → score ≈ **−41.81**; at HL mid ≈ **−41.53**. If s2-1001a settled (unproven): score ≈ **−76 to −82**.\n\n**Crowd (n=1780):** longs 3,035,153 vs shorts 3,022,959 (~0.4% more long owners). Top positions ~47–48 lots. Lead DID not on boards (expected).\n\n**Levels:** price at/above Degen resistance 229–230; ~9 above support 221–222.\n\n**Catalysts:** US jobs Fri 2 Oct **13:30 WAT**; trading lock Sun 4 Oct **10:00 WAT**; S Sun **11:00 WAT** (~65 h).\n\n**Rec:** **HOLD** to S. Closing buys 5 (≥1% fee ≈ **11.5 POLF**) and locks the ~−42 hole; resizing adds another ≥1% fee and jobs/weekend gap risk. Size 5 cannot reach top-3. No trade without Matt's yes. Routine deleted after this report.",
     "check_ts_wat": "2026-10-01 09:50:40 WAT",
     "position": {
       "side": "short",
@@ -188,8 +194,8 @@
       "url": "https://x.com/FlopFarmoor/status/2105205394012353016",
       "topic": "Close Call feedback: settlement opacity / truncated sweeps / no per-owner confirm",
       "kind": "insight_longform",
-      "style": "Sammy tweet style; no \u2014\u2014\u2014; commas not em dashes",
-      "text_file": "[local]",
+      "style": "Sammy tweet style; no ———; commas not em dashes",
+      "text_file": "/workspace/x/post-20260930-closecall-feedback.txt",
       "note": "posted via box browser after Matt style edits"
     },
     {
@@ -200,8 +206,8 @@
       "topic": "Close Call feedback: settlement opacity / truncated sweeps / no per-owner confirm",
       "kind": "insight_longform",
       "style": "X CONTENT MODE + PROVENANCE (0xsammy long-form)",
-      "text_file": "[local]",
-      "draft_file": "[local]",
+      "text_file": "/workspace/x/post-20260930-closecall-feedback.txt",
+      "draft_file": "/home/box/flop-labs/x-draft-closecall-feedback-20260930.md",
       "note": "executor blocked: no browser/desktop tool to publish; standing auth present; parent can post"
     },
     {
@@ -212,13 +218,13 @@
       "job_id": "k2413b0589a",
       "kind": "insight_longform",
       "style": "X CONTENT MODE + PROVENANCE (0xsammy long-form)",
-      "note": "noon insight slot; earliest priority-2 queued item (no priority-1 / queued_for_next_insight_slot); Premium single post; no proof reply; draft [local]"
+      "note": "noon insight slot; earliest priority-2 queued item (no priority-1 / queued_for_next_insight_slot); Premium single post; no proof reply; draft /workspace/x/post-20260928-token-bucket-rl.txt"
     },
     {
       "date": "2026-09-27",
       "time_wat": "12:14",
       "url": "https://x.com/FlopFarmoor/status/2104167402934034536",
-      "topic": "Wall-clock token refresh: NTP step-back \u2192 missed refresh / double refresh",
+      "topic": "Wall-clock token refresh: NTP step-back → missed refresh / double refresh",
       "job_id": "k5ec8a3a0fa",
       "kind": "insight_longform",
       "style": "X CONTENT MODE + PROVENANCE (0xsammy long-form)",
@@ -229,55 +235,61 @@
       "url": "https://x.com/FlopFarmoor/status/2103913071236317415",
       "topic": "Proving an agent-to-agent trade when the referee truncates settlement output",
       "source": "close1 fflead-l1-0926a proof bundle",
-      "text_file": "[local]"
+      "text_file": "/workspace/x/post-proof-truncated-referee.txt"
     }
   ],
   "recent_results": [
     {
-      "file": "result-ke40eee6a91.txt",
-      "mtime": "2026-10-01 13:09:11 WAT",
-      "preview": "REPORT: Write amplification and compaction strategy for storage sitting under a **container image built without a pinned base**. The same Dockerfile rebuilds to a different base digest next week (floa"
+      "file": "result-kf9bc92f0b4.txt",
+      "mtime": "2026-10-01 19:35:20 WAT",
+      "preview": "REPORT: Consensus / SMR safety and liveness when **election timeouts and lease durations are computed by subtracting wall-clock timestamps** in the presence of **leap seconds**. UTC leap smearing / st"
     },
     {
-      "file": "result-k1bfa2d416d.txt",
-      "mtime": "2026-10-01 13:08:41 WAT",
-      "preview": "REPORT: Consensus / state-machine replication (SMR) safety and liveness when \"rollback\" **only reverts application code** while the **migration it shipped with remains applied**. Network splits make t"
+      "file": "result-kace24a16a1.txt",
+      "mtime": "2026-10-01 19:34:45 WAT",
+      "preview": "REVIEW: Secure memory lifecycle for a cache that keys **model output by input hash**. Near-identical prompts miss (hash avalanche), so hit rate understates how often sensitive blobs still sit in heap "
     },
     {
-      "file": "result-k53c0591aa8.txt",
-      "mtime": "2026-10-01 13:08:07 WAT",
-      "preview": "REPORT: Priority inversion and queue starvation mitigation when clients honor **HTTP 429 with Retry-After** under high concurrency. Retry-After may be **delta-seconds** or an **HTTP-date**; many clien"
+      "file": "result-kefa1a30830.txt",
+      "mtime": "2026-10-01 19:34:03 WAT",
+      "preview": "BUILD: Priority inversion and queue starvation when auth traffic is dominated by forever-valid bearer tokens with no exp claim. Once issued they stay valid until signing-key rotation. Under high concu"
     },
     {
-      "file": "result-k0c07bafb72.txt",
-      "mtime": "2026-10-01 13:07:33 WAT",
-      "preview": "REPORT: STRIDE on **HTTP/1.1 chunked transfer encoding** (`Transfer-Encoding: chunked`) at untrusted input boundaries. Clients cannot know Content-Length up front, so UX progress bars estimate or lie "
+      "file": "result-k168bac9140.txt",
+      "mtime": "2026-10-01 19:32:59 WAT",
+      "preview": "BUILD: Zero-copy / kernel-bypass for **debug-level logging in production** when log volume *is* the incident. Classic syslog/journald/stdout pipes burn CPU in copy_to_user, socket sends, and allocator"
     },
     {
-      "file": "result-kf6858a7454.txt",
-      "mtime": "2026-10-01 13:06:58 WAT",
-      "preview": "REPORT: WAL flush / fsync policy under a **umask inherited from an interactive shell**. If the DB/service is started from an operator login (or systemd without UMask=), newly created WAL and data file"
+      "file": "result-kda349fd04d.txt",
+      "mtime": "2026-10-01 19:29:27 WAT",
+      "preview": "REPORT: Consensus / SMR safety and liveness when replicas run in **containers with no memory limit** (`memory` cgroup unset / `-1`). Under network splits the island that still has CPU may also be the "
     },
     {
-      "file": "result-ka9532bbf56.txt",
-      "mtime": "2026-10-01 13:06:21 WAT",
-      "preview": "REPORT: Chaos / fault-injection lab for a **synthetic probe that runs from inside the network**. Inside probes miss user-facing path failures (DNS from public resolvers, edge CDN, NAT, ISP loss). The "
+      "file": "result-kd4d99a7c4f.txt",
+      "mtime": "2026-10-01 19:28:56 WAT",
+      "preview": "BUILD: Wait-free bounded MPMC queue on a single contiguous shared-memory array (Vyukov-style sequence ring). Arbitrary producers/consumers; each enqueue/dequeue completes in a **bounded** step count ("
     },
     {
-      "file": "result-k84daede353.txt",
-      "mtime": "2026-10-01 13:05:42 WAT",
-      "preview": "REPORT: Zeroization and secure memory lifecycle for a **database connection string embedded in the client bundle**. Anyone with the app can extract the DSN/URI and connect directly \u2014 shipping plaintex"
+      "file": "result-ka15564853f.txt",
+      "mtime": "2026-10-01 19:27:24 WAT",
+      "preview": "BUILD: Zero-downtime Terraform state migration for a multi-region AWS production account — local backend → encrypted S3 + DynamoDB locking **without modifying/destroying resources**. Success: (1) migr"
     },
     {
-      "file": "result-k25726bb3d9.txt",
-      "mtime": "2026-10-01 13:04:49 WAT",
-      "preview": "REPORT: O_DIRECT vs buffered page-cache I/O for a **health endpoint that never checks dependencies**. The process answers HTTP 200 while alive, yet cannot reach its database or queue \u2014 so any status/h"
+      "file": "result-kbcc753963d.txt",
+      "mtime": "2026-10-01 19:26:37 WAT",
+      "preview": "REPORT: Consensus / state-machine replication (SMR) safety and liveness for a **synthetic probe that runs from inside the network**. During partitions the probe only sees the island it sits on; it can"
     }
   ],
   "quiet_mode": {
     "active": true,
     "until": "testnet",
-    "note": "Quiet grind mode until testnet: irregular 5 day + 5 night slots (2026-10-01 \u2192 2026-10-07). Scorer often skipped when engine lag unchanged. Faucet/testnet still closed.",
+    "note": "Quiet grind mode until testnet: irregular 5 day + 5 night slots (2026-10-01 → 2026-10-07). Scorer often skipped when engine lag unchanged. Faucet/testnet still closed.",
     "schedule_rules": "Truly random 5 day+5 night until testnet; auto-roll next week when week_end passes. Matt 2026-10-01."
+  },
+  "paths": {
+    "flop_labs": "/home/box/flop-labs",
+    "status": "/home/box/flop-labs/STATUS.md",
+    "schedule": "/home/box/flop-labs/grind-week-schedule.json",
+    "done": "/home/box/flop-labs/grind-week-done.json"
   }
 }

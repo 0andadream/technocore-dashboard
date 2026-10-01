@@ -417,7 +417,7 @@ async function load() {
   } catch (e) {
     $("error").hidden = false;
     $("error").textContent = "Failed to load data.json: " + e.message +
-      " — data may be stale; sync a fresh data.json from the operator box.";
+      " — run update_dashboard.py or open via http://127.0.0.1:8787/";
     $("fetchState").textContent = "error";
   }
 }
