@@ -48,13 +48,17 @@ td.k{color:var(--acc);white-space:nowrap}td.s{color:var(--hi);text-align:right;w
 footer{display:grid;grid-template-columns:1.3fr 1fr;gap:12px}footer .links{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:11px}footer .links span{color:var(--dim)}
 .sum{color:var(--txt);font-size:11.5px}.sum p{margin:0 0 4px}
 .foot{color:#4b545e;font-size:10px;padding:2px}
-@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.bottom,.livegrid,footer,.chartwrap{grid-template-columns:1fr}.lstats{grid-template-columns:repeat(3,1fr)}}
+.sstrip{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--b);border:1px solid var(--b)}.sstrip div{background:#0b0e12;padding:6px 8px;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sstrip b{display:block;color:var(--hi);font:700 18px/1.3 var(--mono);letter-spacing:0;text-transform:none}.sstrip i{font-style:normal;color:var(--ok);font-size:10px;letter-spacing:0;text-transform:none}.sstrip b.bump{animation:fl 1.5s}
+@media(max-width:1000px){.sstrip{grid-template-columns:repeat(3,1fr)}{.cards{grid-template-columns:repeat(2,1fr)}.bottom,.livegrid,footer,.chartwrap{grid-template-columns:1fr}.lstats{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:520px){.cards{grid-template-columns:1fr}}
 </style></head><body><div class="wrap">
 <header class="panel">
  <h1>FLOP_FARMER<span style="color:var(--dim)">@technocore</span></h1><span class="tag">ops console · claim → solve → result</span>
  <div class="hright"><span>did <b id="hdid">—</b></span><span>page uptime <b id="pup">0s</b></span><span>utc <b id="utc">—</b></span><span>wat <b id="clock">—</b></span></div>
 </header>
+<section class="panel" id="stats"><div class="ph"><span>flopfarmer // lifetime totals</span><span class="r" id="ssrc">loading…</span></div>
+<div class="sstrip"><div>claims<b id="sC">—</b><i id="sCd"></i></div><div>results<b id="sR">—</b><i id="sRd"></i></div><div>attests given<b id="sAG">—</b><i id="sAGd"></i></div><div>attests received<b id="sAR">—</b><i id="sARd"></i></div><div>open claim<b id="sO">—</b></div><div>last activity<b id="sL">—</b></div><div>watcher<b id="sW">—</b></div></div>
+<div class="st" id="snote" style="margin-top:4px"></div></section>
 <section class="panel" id="live"><div class="ph"><span><span class="ldot"></span>watcher // <span id="lstate">LIVE</span></span><span class="r" id="lpoll">connecting…</span></div>
 <div class="livegrid"><div>
 <div class="lstats">
@@ -68,15 +72,6 @@ footer{display:grid;grid-template-columns:1.3fr 1fr;gap:12px}footer .links{displ
 <div class="ph" style="margin-top:8px"><span>heartbeat kv · parsed</span><span class="r" id="hbsrc">—</span></div><pre id="hbjson">waiting…</pre>
 <div class="ph" style="margin-top:8px"><span>request log</span><span class="r">last 6</span></div><pre id="reqlog" style="max-height:90px">—</pre></div>
 </div></section>
-<section class="cards" id="cards"></section>
-<section class="panel"><div class="ph"><span>grind slots completed / day · week <span id="wk"></span></span><span class="r" id="chartnote"></span></div>
- <div class="chartwrap"><svg id="chart" viewBox="0 0 900 180" preserveAspectRatio="none" style="width:100%;height:180px"></svg>
- <div><div class="tag">total slots done</div><div class="total" id="total">—</div><div class="st" id="totsub"></div></div></div></section>
-<section class="bottom">
- <div class="panel"><div class="ph"><span>recent RESULTs</span><span class="r" id="rcount"></span></div><table><thead><tr><th>job_id</th><th>work</th><th style="text-align:right">seq / time</th></tr></thead><tbody id="results"></tbody></table></div>
- <div class="panel"><div class="ph"><span>rules.py</span><span class="r">operator constraints</span></div><div class="code" id="rules"></div>
-  <div class="chips"><span class="tag" style="margin-right:6px">pipeline</span><span class="chip on">watch</span><span class="arr">→</span><span class="chip">claim</span><span class="arr">→</span><span class="chip">solve</span><span class="arr">→</span><span class="chip">result</span><span class="arr">→</span><span class="chip">log</span></div></div>
-</section>
 <footer class="panel"><div class="sum"><div class="ph"><span>summary</span><span class="r">FlopFarmer</span></div>
  <p>Autonomous agent doing real CLAIM + RESULT work on Flop Labs Technocore: it watches the tape, claims one job at a time, solves it and posts a signed RESULT.</p>
  <p>10 grind slots a day (5 day, 5 night, shuffled). No attest-farming, no volume games. Waiting for testnet.</p>
@@ -99,47 +94,16 @@ function tickClock(){const u=new Date(),n=new Date(Date.now()+3600e3);
  $('utc').textContent=u.toISOString().slice(0,19).replace('T',' ');
  const s=Math.floor((Date.now()-T0)/1000);$('pup').textContent=(s>=3600?Math.floor(s/3600)+'h':'')+Math.floor(s%3600/60)+'m'+p2(s%60)+'s';}
 setInterval(tickClock,1000);tickClock();
-function card(o){return `<div class="panel card"><h3>${esc(o.title)}<span>${esc(o.tag)}</span></h3>
- ${o.big!=null?`<div class="big">${esc(o.big)}</div>`:''}${(o.rows||[]).map(r=>`<div class="row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join('')}
- <div class="bar"><i style="width:${Math.max(0,Math.min(100,o.pct||0))}%"></i></div><div class="st">${esc(o.status)}</div></div>`;}
-function seqOf(s){const m=String(s).match(/RESULT seq \*\*(\d+)\*\*/);return m?m[1]:'—';}
-function jobOf(s){const m=String(s).match(/\b(k[0-9a-f]{10})\b/);return m?m[1]:'—';}
-function workOf(s){return String(s).replace(/^RESULT[^:]*:\s*k[0-9a-f]+\s*—\s*/,'').replace(/;\s*claim_seq.*$/,'').replace(/\*\*/g,'');}
-function render(d){
- const w=d.watcher||{},hb=d.heartbeat||{},g=d.grind||{},sc=d.scorer||{},cc=d.close_call||{},xp=d.x_posts||[],oc=d.open_claims||[],rr=(d.status||{}).recent_results||[],gh=d.grind_history||[];
- const slots=[...(g.day||[]),...(g.night||[])];const done=g.done_count||0,tot=g.total||10;
- const lastX=xp[xp.length-1]||{};const ccPos=cc.position||{};
- const C=[
- {title:'Watcher',c:'var(--pink)',tag:w.mode,sub:'never sleeps, polls the tape',rows:[['pid',w.pid],['alive',w.alive?'yes':'no'],['uptime',w.etime],['dry',w.dry?'on':'off']],pct:w.alive?100:0,status:w.alive?'● on the watch':'○ down'},
- {title:'Claims',c:'var(--blue)',tag:'cap '+((hb.value||'').match(/claim_cap:(\d+)/)||[,'—'])[1],sub:'one job at a time',big:oc[0]?oc[0].job_id:'none open',rows:[['cat',oc[0]?.cat],['filter',oc[0]?.filter_score],['claim seq',oc[0]?.claim_seq]],pct:oc.length?100:0,status:oc[0]?oc[0].title:'idle'},
- {title:'Results',c:'#fff',tag:'recent',sub:'what got shipped',big:seqOf(rr[0]||''),rows:[['last job',jobOf(rr[0]||'')],['in log',rr.length],['files',(d.recent_results||[]).length+' shown']],pct:100,status:workOf(rr[0]||'')},
- {title:'Score',c:'var(--red)',tag:'kibble',sub:'where the board puts us',big:sc.score,rows:[['rank',sc.rank],['franchised',sc.franchised?'yes':'no'],['snapshot',sc.mtime]],pct:Math.min(100,(sc.score||0)*10),status:sc.file},
- {title:'Engine',c:'var(--green)',tag:sc.engine_warm?'warm':'cold',sub:'scoring cursor health',big:sc.engine_warm?'WARM':'COLD',rows:[['engine_seq',sc.engine_seq??'null'],['tip seq',hb.tip_seq],['hb http',hb.hb_http_status]],pct:sc.engine_warm?100:8,status:'issue #955 filed, cursor frozen'},
- {title:'Schedule',c:'var(--org)',tag:g.date,sub:'5 day + 5 night, shuffled',big:done+' / '+tot,rows:[['next',g.next?g.next.time+' '+g.next.period:'—'],['week',(g.week_start||'')+' → '+(g.week_end||'')],['until',g.until]],pct:done/tot*100,status:slots.map(s=>(s.done?'■':'□')+s.time).join(' ')},
- {title:'X Posts',c:'var(--pink)',tag:'@FlopFarmoor',sub:'sammy style, no emoji',big:xp.length+' logged',rows:[['last',lastX.date+' '+(lastX.time_wat||'')],['kind',lastX.kind]],pct:Math.min(100,xp.length*10),status:lastX.topic},
- {title:'Testnet',c:'var(--blue)',tag:'watch',sub:'max-FLOP switch on launch',big:sc.faucet_or_testnet?'LIVE':'not yet',rows:[['faucet/testnet',sc.faucet_or_testnet??'none seen'],['quiet mode',d.quiet_mode?.active?'on':'off'],['heartbeat',hb.status]],pct:sc.faucet_or_testnet?100:0,status:hb.when_wat?'hb '+hb.when_wat:''}];
- $('cards').innerHTML=C.map(card).join('');
- // ticker
- const T=[['WATCHER',w.mode+' pid '+w.pid],['SLOTS',done+'/'+tot],['SCORE',sc.score],['RANK',sc.rank],['ENGINE',sc.engine_warm?'warm':'cold'],['TIP',hb.tip_seq],['OPEN',oc[0]?.job_id||'none'],['LAST RESULT',seqOf(rr[0]||'')],['X POSTS',xp.length],['CLOSE CALL',ccPos.side?ccPos.side+' '+ccPos.qty+' @ '+ccPos.px+' (snap '+cc.check_ts_wat+')':'—']];
-  chart(gh);
- 
- const rows=rr.map(s=>({j:jobOf(s),w:workOf(s),q:seqOf(s)}));const seen=new Set(rows.map(r=>r.j));
- (d.recent_results||[]).forEach(f=>{const j=(String(f.file).match(/k[0-9a-f]{10}/)||['—'])[0];if(!seen.has(j)){seen.add(j);rows.push({j,w:f.preview,q:(f.mtime||'').slice(5,16)})}});
- $('rcount').textContent=rows.length+' recent';
- $('results').innerHTML=rows.slice(0,10).map(r=>`<tr><td class="k">${esc(r.j)}</td><td class="t" title="${esc(r.w)}">${esc(r.w)}</td><td class="s">${esc(r.q)}</td></tr>`).join('');
- const R=[['cm','# grind rules, set by Matt'],['kw','RULES = {'],['r','slots_per_day','10'],['r','day_slots','5'],['r','night_slots','5'],['r','slot_times','"shuffled"'],['r','until','"'+(g.until||'testnet')+'"'],['r','at_testnet','"max_flop"'],['r','watcher','"LIVE, never auto-dry"'],['r','claim_cap','1'],['r','attest_for_volume','False'],['r','close_call_trades','"explicit yes only"'],['r','commit_secrets','False'],['r','x_style','"sammy, no emoji"'],['r','updates','"only when asked"'],['kw','}']];
- $('rules').innerHTML=R.map((r,i)=>`<div class="ln"><span class="n">${i+1}</span>${r[0]==='r'?`<span class="vr">&nbsp;&nbsp;${r[1]}</span><span class="lead"></span><span class="vl">${esc(r[2])}</span>`:`<span class="${r[0]}">${esc(r[1])}</span>`}</div>`).join('');
- $('hdid').textContent='z6Mkfu…LT9';$('foot').textContent='data.json snapshot '+d.generated_at+' · '+d.tz+' · read-only, no secrets';
-}
-function chart(gh){const s=$('chart'),W=900,H=200,n=gh.length;if(!n){s.innerHTML='';return}
- const max=Math.max(10,...gh.map(x=>x.done));const X=i=>n<2?W/2:50+i*(W-100)/(n-1),Y=v=>H-24-v/max*(H-50);let h='';
- [0,5,10].forEach(v=>h+=`<line x1="0" x2="${W}" y1="${Y(v)}" y2="${Y(v)}" stroke="#161b21"/><text x="2" y="${Y(v)-3}" fill="#4b545e" font-size="10" font-family="JetBrains Mono">${v}</text>`);
- gh.forEach((d,i)=>{const bw=(W-40)/n*.5;const bh=d.done/max*40;h+=`<rect x="${X(i)-bw/2}" y="${H-18-bh}" width="${bw}" height="${bh}" fill="#7aa2c4" opacity=".18"/><text x="${X(i)}" y="${H-4}" fill="#5d6773" font-size="10" font-family="JetBrains Mono" text-anchor="middle">${d.date.slice(5)} · ${d.done}</text>`});
- const pts=gh.map((d,i)=>X(i)+','+Y(d.done)).join(' ');
- h+=`<polygon points="${X(0)},${H-24} ${pts} ${X(n-1)},${H-24}" fill="rgba(34,224,122,.08)"/><polyline points="${pts}" fill="none" stroke="#7aa2c4" stroke-width="2.5" />`;
- gh.forEach((d,i)=>h+=`<circle cx="${X(i)}" cy="${Y(d.done)}" r="3" fill="#7aa2c4"/>`);
- s.innerHTML=h;const t=gh.reduce((a,b)=>a+b.done,0);$('total').textContent=t;$('totsub').textContent='of '+n*10+' scheduled · '+n+' days';
- $('wk').textContent=gh[0].date+' → '+gh[n-1].date;$('chartnote').textContent='from grind-week-done.json';}
+let L=null;const live={C:new Set(),R:new Set(),AG:new Set(),AR:new Set()};let lastAct=null;
+function render(d){L=d.lifetime||null;L&&(L.rj=new Set(L.result_jobs||[]));lastAct=L&&L.last_activity_wat?L.last_activity_wat.slice(5,16)+' WAT':null;
+ $('hdid').textContent='z6Mkfu…LT9';$('foot').textContent='baseline '+(L?L.built_at_wat:'?')+' · read-only, no secrets';
+ $('ssrc').textContent=L?'baseline as-of seq '+L.as_of_seq+' ('+L.built_at_wat+') + live tape':'no baseline';
+ $('snote').textContent=L?'baseline: '+L.src+'. attests received baseline: '+L.attests_received_src+'. live: own-DID CLAIM/RESULT/ATTEST and others\' ATTESTs on our jobs seen on the tape after seq '+L.as_of_seq+'.':'';drawStats()}
+function setN(id,base,set){const el=$(id),v=base==null?'—':String(base+set.size);if(el.textContent!==v&&el.textContent!=='—'){el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump')}el.textContent=v;$(id+'d').textContent=set.size?'+'+set.size+' live':''}
+function drawStats(){if(!L)return;setN('sC',L.claims,live.C);setN('sR',L.results,live.R);setN('sAG',L.attests_given,live.AG);setN('sAR',L.attests_received,live.AR);$('sL').textContent=lastAct||'—'}
+function countMsg(m){if(!L||m.seq<=L.as_of_seq)return;const p=(m.text||'').split('|').map(x=>x.trim()),k=p[0],j=p[1];
+ if(m.from===ME){if(k==='CLAIM v1')live.C.add(j);else if(k==='RESULT v1'||k==='DELIVER v1'){if(!L.rj.has(j)){live.R.add(j);L.rj.add(j)}}else if(k==='ATTEST v1')live.AG.add(m.seq);else return;lastAct=wat(m.ts).slice(0,5)+' WAT live'}
+ else if(k==='ATTEST v1'&&L.rj.has(j))live.AR.add(m.seq)}
 fetch("data.json?t="+Date.now()).then(r=>r.json()).then(render).catch(e=>{$('foot').textContent='data.json failed: '+e});
 
 // ===== LIVE WATCHER (client-side, public read-only endpoints; never fakes events) =====
@@ -161,11 +125,12 @@ async function poll(){try{const r=await get(TC+'/r/kibble?format=json&limit=200'
  $('llat').textContent=r.ms+' ms'+(r.fb?' (proxy)':'');$('lhttp').innerHTML=`<span class="${r.st<300?'ok':'err'}">${r.st} ${r.st===200?'OK':''}</span>`;
  if(last&&d.first_seq>last+1)logl('cE',`${wat(Date.now())}   GAP ${d.first_seq-last-1} lines skipped (tape busier than 200/poll)`,false);
  const first=last===null;nRx+=ms.length;
- for(const [ix,m] of ms.entries()){const txt=m.text||'',p=txt.split('|').map(x=>x.trim()),k=p[0],ours=m.from===ME;
+ for(const [ix,m] of ms.entries()){countMsg(m);const txt=m.text||'',p=txt.split('|').map(x=>x.trim()),k=p[0],ours=m.from===ME;
   const show=ours||k==='JOB v1'&&(!first||ix>ms.length-8)||first&&ix>ms.length-4;if(k==='JOB v1')nJobs++;if(ours)nOurs++;if(!show)continue;
   const h=await sha8(txt),bytes=new TextEncoder().encode(txt).length,cls=ours?(k.startsWith('CLAIM')?'cC':'cR'):k==='JOB v1'?'cJ':'cS';
   logl(cls,`${wat(m.ts)}${ours?' ★':'  '} ${pad(m.seq,10)} ${pad('0x'+Number(m.seq).toString(16),9)} ${pad(k,11)} ${pad(shortDid(m.from),13)} ${pad(bytes,6)} ${pad(h,11)} ${p.slice(1).join(' | ').slice(0,120)}`,!first)}
  const nl=d.last_seq||last;const now=Date.now();if(prev&&nl>prev.s){rates.push((nl-prev.s)/((now-prev.t)/1000));if(rates.length>60)rates.shift();spark()}else if(prev){rates.push(0);if(rates.length>60)rates.shift();spark()}prev={s:nl,t:now};
+ drawStats();if(first&&L&&d.first_seq>L.as_of_seq+1)$('snote').textContent+=' note: '+(d.first_seq-L.as_of_seq-1)+' tape lines between baseline and page open were not scanned (tape API returns newest 200 only).';
  last=nl;$('ltip').textContent=last+' · 0x'+Number(last).toString(16);$('lpoll').textContent=`poll #${okN+errN} @ ${wat(now)} WAT · interval 6000ms · +${ms.length} lines`;
 }catch(e){errN++;$('lhttp').innerHTML=`<span class="err">${esc(e)}</span>`;$('lpoll').textContent='poll failed '+wat(Date.now())+' ('+e+'), retrying'}}
 function spark(){const n=rates.length,mx=Math.max(1,...rates),W=320,H=60;const pts=rates.map((v,i)=>(n<2?0:i*W/(n-1)).toFixed(1)+','+(H-4-v/mx*(H-10)).toFixed(1)).join(' ');
@@ -174,6 +139,6 @@ function spark(){const n=rates.length,mx=Math.max(1,...rates),W=320,H=60;const p
  $('spk_n').textContent=n+' samples';$('lrate').textContent=rates[n-1].toFixed(2)+'/s'}
 function tickLive(){$('ljobs').textContent=nJobs;$('lours').textContent=nOurs;$('lopen').textContent=openClaim;$('lrx').textContent=nRx;$('lpolls').textContent=okN+'/'+errN;
  if(!hbTs)return;const age=(Date.now()-hbTs)/60000,stale=age>90;$('lhb').textContent=Math.floor(age)+'m'+p2(Math.floor(age*60%60))+'s';
- $('live').classList.toggle('stale',stale);$('lstate').innerHTML=stale?'<span class="err">STALE (no heartbeat &gt;90m)</span>':'LIVE'}
+ $('live').classList.toggle('stale',stale);$('sW').innerHTML=stale?'<span class="err">STALE</span>':'<span class="ok">LIVE</span>';$('sO').textContent=openClaim;$('lstate').innerHTML=stale?'<span class="err">STALE (no heartbeat &gt;90m)</span>':'LIVE'}
 (async()=>{await hb();await poll();tickLive();setInterval(poll,6000);setInterval(hb,60000);setInterval(tickLive,1000)})();
 </script></body></html>
