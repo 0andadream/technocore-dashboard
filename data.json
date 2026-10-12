@@ -33,14 +33,14 @@
  ],
  "lifetime": {
   "did": "did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9",
-  "as_of_seq": 17798028,
-  "built_at_wat": "2026-10-12 22:01 WAT",
-  "claims": 676,
+  "as_of_seq": 17814856,
+  "built_at_wat": "2026-10-12 22:53 WAT",
+  "claims": 677,
   "results": 683,
   "attests_given": 30,
   "attests_received": 1,
   "attests_received_src": "kibble scorer snapshot 2026-10-06 09:36 WAT (scorer offline since)",
-  "last_activity_wat": "2026-10-12 21:50:57",
+  "last_activity_wat": "2026-10-12 22:03:55",
   "result_jobs": [
    "k00322571e8",
    "k0043810b28",
