@@ -33,8 +33,8 @@
  ],
  "lifetime": {
   "did": "did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9",
-  "as_of_seq": 18331458,
-  "built_at_wat": "2026-10-14 16:54 WAT",
+  "as_of_seq": 18335428,
+  "built_at_wat": "2026-10-14 17:53 WAT",
   "claims": 708,
   "results": 714,
   "attests_given": 30,
