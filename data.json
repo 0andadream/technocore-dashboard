@@ -33,14 +33,14 @@
  ],
  "lifetime": {
   "did": "did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9",
-  "as_of_seq": 21019238,
-  "built_at_wat": "2026-10-24 13:07 WAT",
-  "claims": 831,
-  "results": 838,
+  "as_of_seq": 21068184,
+  "built_at_wat": "2026-10-24 19:02 WAT",
+  "claims": 832,
+  "results": 839,
   "attests_given": 30,
   "attests_received": 1,
   "attests_received_src": "kibble scorer snapshot 2026-10-06 09:36 WAT (scorer offline since)",
-  "last_activity_wat": "2026-10-24 12:45:31",
+  "last_activity_wat": "2026-10-24 17:37:36",
   "result_jobs": [
    "k00322571e8",
    "k0043810b28",
@@ -436,6 +436,7 @@
    "k7a43c92694",
    "k7a444fa05e",
    "k7a4e106df9",
+   "k7a55c91f23",
    "k7a68ce4246",
    "k7ac502521f",
    "k7ac53289c4",
@@ -890,15 +891,16 @@
   "status": "running",
   "started_wat": "Sat 24 Oct 09:11 WAT",
   "stopped_wat": null,
-  "requests": 14,
+  "requests": 18,
   "ok": 4,
-  "success_rate": 0.286,
+  "success_rate": 0.222,
   "p50": 22.75,
   "p95": 23.734,
   "errors": {
-   "503:{'code': 'provider_error', 'message': 'E": 6,
+   "503:{'code': 'provider_error', 'message': 'E": 8,
    "exc:ReadTimeout": 2,
-   "429:{'code': 'overloaded', 'message': 'Broke": 2
+   "429:{'code': 'overloaded', 'message': 'Broke": 3,
+   "503:{'code': 'provider_error', 'message': 'T": 1
   },
   "channels": {
    "opened": 4,
@@ -908,9 +910,9 @@
    "timed_out": 0
   },
   "flop_spent": 0.0,
-  "summary_updated_wat": "Sat 24 Oct 12:50 WAT",
+  "summary_updated_wat": "Sat 24 Oct 17:38 WAT",
   "allowance_expiry_wat": "Sun 25 Oct ~09:10 WAT",
-  "updated_wat": "Sat 24 Oct 13:07 WAT",
+  "updated_wat": "Sat 24 Oct 19:02 WAT",
   "note": "Devnet earns nothing; testnet target Nov 3",
   "throwaway": {
    "requests": 4,
