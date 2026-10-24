@@ -33,14 +33,14 @@
  ],
  "lifetime": {
   "did": "did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9",
-  "as_of_seq": 20938247,
-  "built_at_wat": "2026-10-24 07:05 WAT",
-  "claims": 829,
+  "as_of_seq": 20977978,
+  "built_at_wat": "2026-10-24 09:22 WAT",
+  "claims": 830,
   "results": 836,
   "attests_given": 30,
   "attests_received": 1,
   "attests_received_src": "kibble scorer snapshot 2026-10-06 09:36 WAT (scorer offline since)",
-  "last_activity_wat": "2026-10-24 02:42:31",
+  "last_activity_wat": "2026-10-24 08:41:27",
   "result_jobs": [
    "k00322571e8",
    "k0043810b28",
@@ -880,5 +880,40 @@
    "kff5acd548f"
   ],
   "src": "local records: watcher.log (CLAIM CONFIRMED / RESULT seen, own DID) + action logs in kibble-*.json, deduped by job"
+ },
+ "devnet": {
+  "wallet": "5H4PGA\u202611mqT",
+  "balance_flop": 25.0,
+  "balance_src": "rpc live",
+  "status": "running",
+  "started_wat": "Sat 24 Oct 09:11 WAT",
+  "stopped_wat": null,
+  "requests": 3,
+  "ok": 2,
+  "success_rate": 0.667,
+  "p50": 22.75,
+  "p95": 22.75,
+  "errors": {
+   "503:{'code': 'provider_error', 'message': 'E": 1
+  },
+  "channels": {
+   "opened": 2,
+   "open": 0,
+   "settled": 0,
+   "closed": 0,
+   "timed_out": 0
+  },
+  "flop_spent": 0.0,
+  "summary_updated_wat": "Sat 24 Oct 09:17 WAT",
+  "allowance_expiry_wat": "Sun 25 Oct ~09:10 WAT",
+  "updated_wat": "Sat 24 Oct 09:22 WAT",
+  "note": "Devnet earns nothing; testnet target Nov 3",
+  "throwaway": {
+   "requests": 4,
+   "ok": 0,
+   "errors": {
+    "503:{'code': 'provider_error', 'message': 'E": 4
+   }
+  }
  }
 }

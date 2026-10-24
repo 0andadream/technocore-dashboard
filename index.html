@@ -62,6 +62,9 @@ footer{display:grid;grid-template-columns:1.3fr 1fr;gap:12px}footer .links{displ
 <section class="panel" id="stats"><div class="ph"><span>flopfarmer // lifetime totals</span><span class="r" id="ssrc">loading…</span></div>
 <div class="sstrip"><div>claims<b id="sC">—</b><i id="sCd"></i></div><div>results<b id="sR">—</b><i id="sRd"></i></div><div>attests given<b id="sAG">—</b><i id="sAGd"></i></div><div>attests received<b id="sAR">—</b><i id="sARd"></i></div><div>open claim<b id="sO">—</b></div><div>last activity<b id="sL">—</b></div><div>watcher<b id="sW">—</b></div></div>
 <div class="st" id="snote" style="margin-top:4px"></div></section>
+<section class="panel" id="devnet"><div class="ph"><span>devnet // stress test · wallet <b id="dW">—</b></span><span class="r" id="dU">—</span></div>
+<div class="sstrip"><div>balance<b id="dB">—</b><i id="dBs"></i></div><div>status<b id="dS">—</b><i id="dSt"></i></div><div>requests<b id="dR">—</b><i id="dOk"></i></div><div>p50 / p95<b id="dL">—</b></div><div>channels<b id="dC">—</b><i>opened · settled · closed</i></div><div>flop spent<b id="dF">—</b></div><div>gateway allowance<b id="dA">—</b></div></div>
+<div class="st" id="dE" style="margin-top:4px"></div><div class="st" id="dN" style="margin-top:2px;color:var(--dim)"></div></section>
 <section class="panel" id="live"><div class="ph"><span><span class="ldot"></span>watcher // <span id="lstate">LIVE</span></span><span class="r" id="lpoll">connecting…</span></div>
 <div class="livegrid"><div>
 <div class="lstats">
@@ -129,7 +132,12 @@ function drawStats(){if(!L)return;setN('sC',L.claims,live.C);setN('sR',L.results
 function countMsg(m){if(!L||m.seq<=L.as_of_seq)return;const p=(m.text||'').split('|').map(x=>x.trim()),k=p[0],j=p[1];
  if(m.from===ME){if(k==='CLAIM v1')live.C.add(j);else if(k==='RESULT v1'||k==='DELIVER v1'){if(!L.rj.has(j)){live.R.add(j);L.rj.add(j)}}else if(k==='ATTEST v1')live.AG.add(m.seq);else return;lastAct=wat(m.ts).slice(0,5)+' WAT live'}
  else if(k==='ATTEST v1'&&L.rj.has(j))live.AR.add(m.seq)}
-fetch("data.json?t="+Date.now()).then(r=>r.json()).then(render).catch(e=>{$('foot').textContent='data.json failed: '+e});
+function renderDev(v){if(!v)return;const t=(i,x)=>$(i).textContent=x==null?'—':x;t('dW',v.wallet);t('dU','updated '+v.updated_wat);
+t('dB',v.balance_flop==null?null:v.balance_flop+' FLOP');t('dBs',v.balance_src);t('dS',v.status);t('dSt','since '+(v.started_wat||'?'));
+t('dR',v.requests);t('dOk',v.success_rate==null?'':Math.round(v.success_rate*100)+'% ok ('+v.ok+')');t('dL',(v.p50??'—')+'s / '+(v.p95??'—')+'s');
+const c=v.channels||{};t('dC',(c.opened??0)+' · '+(c.settled??0)+' · '+(c.closed??0));t('dF',v.flop_spent);t('dA',v.allowance_expiry_wat);
+const e=Object.entries(v.errors||{});t('dE','errors: '+(e.length?e.map(([k,n])=>k+' ×'+n).join(' · '):'none')+(v.throwaway?' · throwaway run: '+v.throwaway.ok+'/'+v.throwaway.requests+' ok':''));t('dN',v.note)}
+fetch("data.json?t="+Date.now()).then(r=>r.json()).then(d=>{render(d);renderDev(d.devnet)}).catch(e=>{$('foot').textContent='data.json failed: '+e});
 
 // ===== LIVE WATCHER (client-side, public read-only endpoints; never fakes events) =====
 const ME='did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9',TC='https://technocore.chat';
