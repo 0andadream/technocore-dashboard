@@ -33,8 +33,8 @@
  ],
  "lifetime": {
   "did": "did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9",
-  "as_of_seq": 21104286,
-  "built_at_wat": "2026-10-25 00:58 WAT",
+  "as_of_seq": 21122233,
+  "built_at_wat": "2026-10-25 07:07 WAT",
   "claims": 833,
   "results": 840,
   "attests_given": 30,
@@ -892,15 +892,15 @@
   "status": "running",
   "started_wat": "Sat 24 Oct 09:11 WAT",
   "stopped_wat": null,
-  "requests": 26,
+  "requests": 28,
   "ok": 4,
-  "success_rate": 0.154,
+  "success_rate": 0.143,
   "p50": 22.75,
   "p95": 23.734,
   "errors": {
-   "503:{'code': 'provider_error', 'message': 'E": 16,
+   "503:{'code': 'provider_error', 'message': 'E": 17,
    "exc:ReadTimeout": 2,
-   "429:{'code': 'overloaded', 'message': 'Broke": 3,
+   "429:{'code': 'overloaded', 'message': 'Broke": 4,
    "503:{'code': 'provider_error', 'message': 'T": 1
   },
   "channels": {
@@ -911,9 +911,9 @@
    "timed_out": 0
   },
   "flop_spent": 0.0,
-  "summary_updated_wat": "Sun 25 Oct 00:40 WAT",
+  "summary_updated_wat": "Sun 25 Oct 02:49 WAT",
   "allowance_expiry_wat": "Sun 25 Oct ~09:10 WAT",
-  "updated_wat": "Sun 25 Oct 00:58 WAT",
+  "updated_wat": "Sun 25 Oct 07:07 WAT",
   "note": "Devnet earns nothing; testnet target Nov 3",
   "throwaway": {
    "requests": 4,
