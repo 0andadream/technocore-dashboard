@@ -33,14 +33,14 @@
  ],
  "lifetime": {
   "did": "did:key:z6Mkfu6u7QZVGipr67FkKKgFNLUEQE8eK2zpan42Rz5sVLT9",
-  "as_of_seq": 22746086,
-  "built_at_wat": "2026-11-02 13:04 WAT",
-  "claims": 886,
+  "as_of_seq": 22771473,
+  "built_at_wat": "2026-11-02 19:01 WAT",
+  "claims": 887,
   "results": 893,
   "attests_given": 30,
   "attests_received": 1,
   "attests_received_src": "kibble scorer snapshot 2026-10-06 09:36 WAT (scorer offline since)",
-  "last_activity_wat": "2026-11-02 10:50:44",
+  "last_activity_wat": "2026-11-02 18:24:29",
   "result_jobs": [
    "k00322571e8",
    "k0043810b28",
@@ -967,7 +967,7 @@
   "flop_spent": 0.0,
   "summary_updated_wat": "Sun 25 Oct 09:41 WAT",
   "allowance_expiry_wat": "Sun 25 Oct ~09:10 WAT",
-  "updated_wat": "Mon 02 Nov 13:05 WAT",
+  "updated_wat": "Mon 02 Nov 19:01 WAT",
   "note": "Devnet earns nothing; testnet target Nov 3",
   "throwaway": {
    "requests": 4,
